@@ -1,0 +1,35 @@
+int calcularMDC(int num1, int num2) {
+  if (num1 < 0 || num2 < 0) {
+    return -1;
+  }
+
+  int resto;
+
+  while (num2 != 0) {
+    resto = num1 % num2;
+    num1 = num2;
+    num2 = resto;
+  }
+
+  return num1;
+}
+
+int main() {
+  int num1, num2;
+
+  printf("Digite o primeiro numero: ");
+  scanf("%d", &num1);
+a
+  printf("Digite o segundo numero: ");
+  scanf("%d", &num2);
+
+  int mdc = calcularMDC(num1, num2);
+
+  if (mdc == -1) {
+    printf("Erro: um dos numeros digitados eh negativo.\n");
+  } else {
+    printf("O MDC de %d e %d eh: %d\n", num1, num2, mdc);
+  }
+
+  return 0;
+}
