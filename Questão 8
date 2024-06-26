@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+  int data;
+  struct Node* next;
+} Node;
+
+Node* inserirNoFinal(Node* head, int valor) {
+  Node* novoNo = malloc(sizeof(Node));
+  if (novoNo == NULL) {
+    printf("Erro de alocacao de memoria.\n");
+    return NULL;
+  }
+
+  novoNo->data = valor;
+  novoNo->next = NULL;
+
+  if (head == NULL) {
+    return novoNo;
+  }
+
+  Node* aux = head;
+  while (aux->next != NULL) {
+    aux = aux->next;
+  }
+
+  aux->next = novoNo;
+  return head;
+}
+
+void imprimirLista(Node* head) {
+  if (head == NULL) {
+    printf("Lista vazia.\n");
+    return;
+  }
+
+  printf("Lista: ");
+  Node* aux = head;
+  while (aux != NULL) {
+    printf("%d ", aux->data);
+    aux = aux->next;
+  }
+  printf("\n");
+}
+
+int main() {
+  Node* head = NULL;
+
+  head = inserirNoFinal(head, 10);
+  head = inserirNoFinal(head, 20);
+  head = inserirNoFinal(head, 30);
+
+  imprimirLista(head);
+
+  head = inserirNoFinal(head, 40);
+
+  imprimirLista(head);
+
+  return 0;
+}
