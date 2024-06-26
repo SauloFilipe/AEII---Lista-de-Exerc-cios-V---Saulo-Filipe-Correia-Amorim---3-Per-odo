@@ -28,7 +28,7 @@ int main() {
 
   float media = calcularMedia(array, tamanho);
 
-  printf("A media dos elementos do array Ã©: %.2f\n", media);
+  printf("A media dos elementos do array eh: %.2f\n", media);
 
   return 0;
 }
