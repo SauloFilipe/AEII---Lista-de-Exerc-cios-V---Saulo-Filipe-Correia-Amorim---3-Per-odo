@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef struct Livro {
+  char titulo[50];
+  char autor[50];
+  int anoPublicacao;
+} Livro;
+
+Livro* encontrarLivroMaisRecente(Livro livros[], int tamanho) {
+  if (tamanho <= 0) {
+    return NULL;
+  }
+
+  Livro* livroMaisRecente = &livros[0];
+
+  for (int i = 1; i < tamanho; i++) {
+    if (livros[i].anoPublicacao > livroMaisRecente->anoPublicacao) {
+      livroMaisRecente = &livros[i];
+    }
+  }
+
+  return livroMaisRecente;
+}
+
+int main() {
+  Livro livros[4];
+
+  strcpy(livros[0].titulo, "O Principe de Maquiavel");
+  strcpy(livros[0].autor, "Nicolau Maquiavel");
+  livros[0].anoPublicacao = 1532;
+
+  strcpy(livros[1].titulo, "Bitcoin Redpill");
+  strcpy(livros[1].autor, "Renato Almoedo");
+  livros[1].anoPublicacao = 2017;
+
+  strcpy(livros[2].titulo, "As 48 leis do poder");
+  strcpy(livros[2].autor, "Robert Greene");
+  livros[2].anoPublicacao = 2021;
+
+  strcpy(livros[3].titulo, "Vagabond");
+  strcpy(livros[3].autor, "Takehiko Inoue");
+  livros[3].anoPublicacao = 1999;
+
+  Livro* livroMaisRecente = encontrarLivroMaisRecente(livros, 4);
+
+  if (livroMaisRecente != NULL) {
+    printf("O livro de publicacaoo mais recente eh:\n");
+    printf("Titulo: %s\n", livroMaisRecente->titulo);
+    printf("Autor: %s\n", livroMaisRecente->autor);
+    printf("Ano de publicacao: %d\n", livroMaisRecente->anoPublicacao);
+  } else {
+    printf("Erro: array de livros vazio ou com tamanho invalido.\n");
+  }
+
+  return 0;
+}
