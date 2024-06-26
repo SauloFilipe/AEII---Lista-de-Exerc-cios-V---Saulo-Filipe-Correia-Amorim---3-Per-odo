@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+void append(struct Node** head_ref, int new_data) {
+    struct Node* new_node = (struct Node*) malloc(sizeof(struct Node));
+    struct Node* last = *head_ref;
+    new_node->data = new_data;
+    new_node->next = NULL;
+
+    if (*head_ref == NULL) {
+        *head_ref = new_node;
+        return;
+    }
+
+    while (last->next != NULL)
+        last = last->next;
+
+    last->next = new_node;
+}
+
+void remove_first(struct Node** head_ref) {
+    if (*head_ref == NULL) {
+        printf("Lista vazia. Nao eh possivel remover.\n");
+        return;
+    }
+
+    struct Node* temp = *head_ref;
+    *head_ref = (*head_ref)->next;
+    free(temp);
+}
+
+void print_list(struct Node* node) {
+    while (node != NULL) {
+        printf("%d -> ", node->data);
+        node = node->next;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    struct Node* head = NULL;
+
+    append(&head, 1);
+    append(&head, 2);
+    append(&head, 3);
+
+    printf("Lista original:\n");
+    print_list(head);
+
+    remove_first(&head);
+
+    printf("Lista apos remover o primeiro elemento:\n");
+    print_list(head);
+
+    return 0;
+}
