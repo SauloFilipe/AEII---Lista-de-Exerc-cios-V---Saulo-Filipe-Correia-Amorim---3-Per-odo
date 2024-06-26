@@ -20,15 +20,15 @@ int main() {
 
   int array[tamanho];
 
-  srand(time(NULL)); // Inicializa o gerador de nÃºmeros aleatÃ³rios
+  srand(time(NULL));
 
   for (int i = 0; i < tamanho; i++) {
-    array[i] = rand() % 100; // Gera nÃºmero aleatÃ³rio entre 0 e 99
+    array[i] = rand() % 100;
   }
 
   float media = calcularMedia(array, tamanho);
 
-  printf("A mÃ©dia dos elementos do array Ã©: %.2f\n", media);
+  printf("A media dos elementos do array Ã©: %.2f\n", media);
 
   return 0;
 }
